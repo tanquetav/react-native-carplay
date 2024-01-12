@@ -25,6 +25,7 @@ import { Action } from './interfaces/Action';
 
 export interface InternalCarPlay extends NativeModule {
   checkForConnection(): void;
+  openMap(address: string): void;
   setRootTemplate(templateId: string, animated: boolean): void;
   pushTemplate(templateId: string, animated: boolean): void;
   popToTemplate(templateId: string, animated: boolean): void;

@@ -2,7 +2,7 @@ buildscript {
 
   def kotlin_version = rootProject.ext.has('kotlinVersion')
     ? rootProject.ext.get('kotlinVersion')
-    : project.properties['RnAndroidAuto_kotlinVersion']
+    : '1.6.21'
 
   repositories {
     mavenLocal()

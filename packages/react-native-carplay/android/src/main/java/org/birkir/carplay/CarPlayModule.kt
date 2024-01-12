@@ -1,6 +1,7 @@
 package org.birkir.carplay
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
@@ -95,6 +96,53 @@ class CarPlayModule internal constructor(private val reactContext: ReactApplicat
   @ReactMethod
   fun checkForConnection() {
     eventEmitter?.didConnect()
+  }
+
+  @ReactMethod
+  fun openMap(address: String) {
+
+      val uri = Uri.parse("geo:0,0?q="+address)
+      //val uri = Uri.parse("geo:33.7931605,9.5607653")
+  //    println(uri)
+
+      val intent = Intent().apply{
+        action = CarContext.ACTION_NAVIGATE 
+        data = uri
+      }
+      //val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:55555555555" ))
+      println(intent)
+
+      carContext.startCarApp(intent)
+
+
+//    handler.post {
+//      screenManager?.push(CarCafeDetailScreen(carContext, 33.7931605,9.5607653))
+//    }
+/*
+    handler.post {
+      val uri = Uri.parse("geo:0,0?q="+address)
+      //val uri = Uri.parse("geo:33.7931605,9.5607653")
+  //    println(uri)
+
+      val intent = Intent().apply{
+        action = CarContext.ACTION_NAVIGATE 
+        data = uri
+      }
+      //val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:55555555555" ))
+      println(intent)
+
+      carContext.startCarApp(intent)
+      //screenManager?.pop()
+      println("FIII")
+  //    val mapIntentUri = Uri.parse("google.navigation:q="+address)
+  //    val mapIntent = Intent(Intent.ACTION_VIEW, mapIntentUri)
+  //    mapIntent.setPackage("com.google.android.apps.maps")
+      ///     mapIntent.setPackage("com.google.android.projection.gearhead")
+
+  //    mapIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+  //    carContext.startActivity(mapIntent);
+    }
+    */
   }
 
   @ReactMethod
